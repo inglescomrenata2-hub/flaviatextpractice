@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading: Travertines & Pre-Salt — Either / Neither / Both / Whether</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;1,300;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F1EB;--surface:#FFF;--s2:#EDE8DF;--s3:#E4DDD2;
+  --ink:#1A1208;--ink2:#3E3020;--ink3:#7A6A52;
+  --border:#D8D0C0;--border2:#EAE4D8;
+  --ei:#1A4A7A;--ei2:#2268AA;--ei3:#E2EDF8;
+  --nn:#6A1818;--nn2:#B83030;--nn3:#F8E4E4;
+  --bo:#1A5E30;--bo2:#278A48;--bo3:#E2F2E8;
+  --wh:#5E4010;--wh2:#A87020;--wh3:#FAF0DC;
+  --green:#237023;--green-bg:#E3F3E3;
+  --red:#921818;--red-bg:#FAE5E5;
+  --amber:#6A4000;--amber-bg:#FDF0D0;
+  --rock:#4A3A28;--rock2:#7A6040;--rock3:#F2EDE0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);padding:2rem 1rem 6rem;font-size:15px;line-height:1.75;}
+.page{max-width:800px;margin:0 auto;}
+
+/* HEADER */
+.hdr{background:var(--rock);border-radius:18px;padding:2.25rem 2rem 1.75rem;margin-bottom:2rem;position:relative;overflow:hidden;}
+.hdr::after{content:'⬡';position:absolute;right:1.5rem;top:1.25rem;font-size:64px;opacity:.06;line-height:1;}
+.hdr-eye{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#8A7A60;margin-bottom:.4rem;}
+.hdr h1{font-family:'Fraunces',serif;font-size:clamp(20px,4vw,30px);color:#F0EAE0;line-height:1.25;margin-bottom:.35rem;}
+.hdr-sub{font-size:13px;color:#6A5A48;line-height:1.6;margin-bottom:1.2rem;}
+.hdr-pills{display:flex;flex-wrap:wrap;gap:7px;}
+.pill{font-size:11px;font-weight:600;background:rgba(255,255,255,.07);color:#6A5A48;padding:3px 11px;border-radius:20px;border:1px solid rgba(255,255,255,.09);}
+
+/* READING TEXT */
+.reading{background:var(--surface);border:1px solid var(--border);border-radius:16px;margin-bottom:2rem;overflow:hidden;}
+.reading-hdr{padding:1rem 1.5rem;background:var(--s2);border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:.75rem;}
+.reading-hdr h2{font-size:14px;font-weight:700;color:var(--ink);}
+.r-tag{font-size:11px;font-weight:700;background:var(--rock3);color:var(--rock);padding:3px 10px;border-radius:4px;border:1px solid var(--border);margin-left:auto;}
+.reading-body{padding:1.5rem;}
+.reading-body p{font-size:15px;line-height:1.95;color:var(--ink2);margin-bottom:1.1rem;}
+.reading-body p:last-child{margin-bottom:0;}
+.hl{padding:1px 3px;border-radius:3px;font-weight:600;}
+.hl-ei{background:var(--ei3);color:var(--ei);}
+.hl-nn{background:var(--nn3);color:var(--nn);}
+.hl-bo{background:var(--bo3);color:var(--bo);}
+.hl-wh{background:var(--wh3);color:var(--wh2);}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px;padding:1rem 1.5rem;border-top:1px solid var(--border2);background:var(--s2);}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ink3);}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+
+/* SECTIONS */
+.sec-label{display:flex;align-items:center;gap:10px;margin:2rem 0 .9rem;}
+.sec-label::before{content:'';display:block;width:24px;height:2px;background:var(--ink3);}
+.sec-label span{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink3);}
+
+/* EX CARDS */
+.ex-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:1.5rem;overflow:hidden;}
+.ex-hdr{padding:.8rem 1.4rem;background:var(--s2);border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:.8rem;}
+.ex-n{font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--ink2);min-width:26px;}
+.ex-htxt h2{font-size:14px;font-weight:600;color:var(--ink);}
+.ex-htxt p{font-size:12px;color:var(--ink3);margin-top:1px;}
+.ctag{margin-left:auto;font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;background:var(--s3);color:var(--ink2);flex-shrink:0;}
+.ex-body{padding:1.2rem 1.4rem;}
+.instr{font-size:13px;color:var(--ink3);font-style:italic;margin-bottom:.9rem;line-height:1.6;}
+
+.q-list{display:flex;flex-direction:column;gap:.6rem;}
+.q-item{background:var(--s2);border:1px solid var(--border2);border-radius:9px;padding:.7rem 1rem;font-size:14px;line-height:1.85;transition:border-color .2s;}
+.q-item.col{flex-direction:column;align-items:flex-start;}
+.q-top{display:flex;gap:8px;width:100%;align-items:flex-start;}
+.q-n{font-size:12px;font-weight:700;color:var(--ink2);min-width:20px;flex-shrink:0;padding-top:2px;}
+.badge{font-size:10px;font-weight:700;padding:1px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;flex-shrink:0;margin-right:3px;}
+.badge.ei{background:var(--ei3);color:var(--ei);}
+.badge.nn{background:var(--nn3);color:var(--nn);}
+.badge.bo{background:var(--bo3);color:var(--bo);}
+.badge.wh{background:var(--wh3);color:var(--wh2);}
+
+/* INPUTS */
+input[type=text]{border:none;border-bottom:2px solid var(--ink3);background:transparent;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);padding:2px 5px;outline:none;transition:all .2s;}
+input[type=text]:focus{border-bottom-color:var(--ink);background:rgba(0,0,0,.03);border-radius:3px 3px 0 0;}
+input[type=text].sm{min-width:80px;}
+input[type=text].md{min-width:130px;}
+input[type=text].lg{min-width:200px;}
+input[type=text].full{width:100%;min-width:unset;margin-top:5px;}
+input[type=text].ok{border-bottom-color:var(--green)!important;background:var(--green-bg)!important;border-radius:3px 3px 0 0;}
+input[type=text].err{border-bottom-color:var(--red)!important;background:var(--red-bg)!important;border-radius:3px 3px 0 0;}
+textarea{width:100%;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);padding:.6rem 1rem;resize:vertical;min-height:72px;outline:none;margin-top:5px;background:var(--s2);line-height:1.75;transition:border-color .2s;}
+textarea:focus{border-color:var(--ink);background:white;}
+textarea::placeholder{color:var(--ink3);}
+
+/* RADIO */
+.mc-opts{display:flex;gap:.9rem;flex-wrap:wrap;padding-left:22px;margin-top:6px;}
+.mc-opt{display:flex;align-items:center;gap:5px;font-size:14px;cursor:pointer;}
+.mc-opt input{accent-color:var(--ink);width:15px;height:15px;}
+.ok-r + span{color:var(--green);font-weight:700;}
+.err-r + span{color:var(--red);}
+
+/* BUTTONS / SCORE */
+.btn-check{display:inline-flex;align-items:center;gap:5px;background:var(--ink);color:white;border:none;border-radius:7px;padding:7px 18px;font-size:13px;font-weight:600;cursor:pointer;margin-top:.8rem;font-family:'DM Sans',sans-serif;transition:background .15s;}
+.btn-check:hover{background:var(--ink2);}
+.score-bar{display:none;margin-top:.55rem;padding:.5rem 1rem;border-radius:7px;font-size:13px;font-weight:600;}
+.score-bar.good{background:var(--green-bg);border:1px solid #98C890;color:var(--green);}
+.score-bar.partial{background:var(--amber-bg);border:1px solid #E0C060;color:var(--amber);}
+.score-bar.retry{background:var(--red-bg);border:1px solid #E8A0A0;color:var(--red);}
+
+/* ANSWER REVEAL */
+.reveal-btn{background:none;border:1px dashed var(--border);color:var(--ink3);border-radius:6px;padding:4px 12px;font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:.6rem;transition:all .15s;}
+.reveal-btn:hover{border-color:var(--ink3);color:var(--ink2);}
+.ans-reveal{display:none;margin-top:.6rem;background:var(--bo3);border:1px solid #A8D8B8;border-radius:8px;padding:.6rem 1rem;font-size:13px;color:var(--bo);line-height:1.7;}
+.ans-reveal.open{display:block;}
+
+/* VOCAB SPOTLIGHT */
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.5rem;}
+.vocab-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;}
+.vc-word{font-weight:700;font-size:14px;color:var(--ink);margin-bottom:2px;}
+.vc-def{font-size:12px;color:var(--ink3);line-height:1.55;}
+.vc-ex{font-size:12px;color:var(--ink2);font-style:italic;margin-top:3px;line-height:1.5;border-left:2px solid var(--border);padding-left:7px;}
+
+@media(max-width:560px){
+  .vocab-grid{grid-template-columns:1fr;}
+  .ex-body,.ex-hdr{padding:.9rem;}
+  .reading-body{padding:1rem;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hdr">
+  <div class="hdr-eye">Reading + Grammar Practice</div>
+  <h1>Travertines &amp; Pre-Salt:<br>What Science Knows — And Doesn't</h1>
+  <p class="hdr-sub">Read the text and notice how either, neither, both, and whether appear in scientific writing. Then practise with exercises.</p>
+  <div class="hdr-pills">
+    <span class="pill">Level B1→B2</span>
+    <span class="pill">Geology / Pre-salt</span>
+    <span class="pill">Reading + Grammar</span>
+  </div>
+</header>
+
+<!-- READING TEXT -->
+<div class="reading">
+  <div class="reading-hdr">
+    <h2>Reading Text</h2>
+    <span class="r-tag">~350 words · Academic English</span>
+  </div>
+  <div class="reading-body">
+
+    <p>Travertines are sedimentary rocks formed by the rapid precipitation of calcium carbonate from groundwater or surface water. <span class="hl hl-bo">Both</span> hot springs and cold freshwater environments can produce them, <span class="hl hl-wh">whether</span> the conditions involve volcanic activity or simple tectonic pressure. Because of this, geologists must determine <span class="hl hl-wh">whether</span> a deposit formed under high-temperature hydrothermal conditions or at ambient temperatures — a distinction that carries major implications for reservoir quality.</p>
+
+    <p>In Brazil's pre-salt layer, travertines are particularly significant. <span class="hl hl-ei">Either</span> microbial mats <span class="hl hl-ei">or</span> direct chemical precipitation can drive carbonate deposition in lacustrine settings, and researchers are still investigating <span class="hl hl-wh">whether</span> <span class="hl hl-ei">either</span> mechanism dominates — or <span class="hl hl-wh">whether</span> <span class="hl hl-bo">both</span> operate simultaneously. The answer matters enormously for the oil and gas industry: reservoir porosity depends heavily on the origin of the rock fabric.</p>
+
+    <p>Fieldwork in such environments is demanding. <span class="hl hl-nn">Neither</span> traditional surface mapping <span class="hl hl-nn">nor</span> standard core analysis alone is sufficient to reconstruct the full depositional history of a pre-salt carbonate. Geologists typically combine <span class="hl hl-bo">both</span> methods — together with geochemical analysis — to build a reliable model. Even then, the question of <span class="hl hl-wh">whether</span> ancient climate shifts affected the system adds another layer of complexity.</p>
+
+    <p>Roman travertines, such as those at Tivoli (Lapis Tiburtinus), offer a useful analogy. <span class="hl hl-bo">Both</span> their macro-scale bedding and their microscopic fabric have been extensively studied. However, <span class="hl hl-nn">neither</span> the Roman deposits <span class="hl hl-nn">nor</span> the South American pre-salt carbonates are fully understood yet — each system has its own particularities. Scientists continue to debate <span class="hl hl-wh">whether</span> global models of travertine formation can be applied across <span class="hl hl-ei">either</span> continental <span class="hl hl-ei">or</span> oceanic rift settings without significant modifications.</p>
+
+    <p>The field is evolving rapidly. <span class="hl hl-wh">Whether</span> you focus on petrography, geochemistry, <span class="hl hl-ei">or</span> basin modelling, <span class="hl hl-bo">both</span> precision and adaptability are essential. And <span class="hl hl-wh">whether</span> or not new drilling technologies improve sample recovery, the fundamental questions about <span class="hl hl-nn">neither</span> porosity <span class="hl hl-nn">nor</span> permeability being fully predictable will remain central challenges for decades to come.</p>
+
+  </div>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot" style="background:var(--ei3);border:1px solid var(--ei2)"></span>either … or</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--nn3);border:1px solid var(--nn2)"></span>neither … nor</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--bo3);border:1px solid var(--bo2)"></span>both … and</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--wh3);border:1px solid var(--wh2)"></span>whether</span>
+  </div>
+</div>
+
+<!-- VOCAB SPOTLIGHT -->
+<div class="sec-label"><span>Vocabulary Spotlight</span></div>
+<div class="vocab-grid">
+  <div class="vocab-card"><div class="vc-word">precipitation (n.)</div><div class="vc-def">the process by which a dissolved substance forms a solid and settles out</div><div class="vc-ex">"…the rapid <em>precipitation</em> of calcium carbonate from groundwater…"</div></div>
+  <div class="vocab-card"><div class="vc-word">lacustrine (adj.)</div><div class="vc-def">relating to or formed in a lake</div><div class="vc-ex">"…carbonate deposition in <em>lacustrine</em> settings…"</div></div>
+  <div class="vocab-card"><div class="vc-word">porosity (n.)</div><div class="vc-def">the proportion of empty pore spaces in a rock — key for fluid storage</div><div class="vc-ex">"…reservoir <em>porosity</em> depends heavily on the origin of the rock fabric."</div></div>
+  <div class="vocab-card"><div class="vc-word">depositional history (n.)</div><div class="vc-def">the record of how and when layers of rock or sediment were laid down</div><div class="vc-ex">"…reconstruct the full <em>depositional history</em> of a pre-salt carbonate."</div></div>
+  <div class="vocab-card"><div class="vc-word">petrography (n.)</div><div class="vc-def">the branch of geology concerned with the microscopic description and classification of rocks</div><div class="vc-ex">"Whether you focus on <em>petrography</em>, geochemistry, or basin modelling…"</div></div>
+  <div class="vocab-card"><div class="vc-word">rift setting (n.)</div><div class="vc-def">a geological environment where tectonic plates are pulling apart, creating elongated basins</div><div class="vc-ex">"…applied across either continental or oceanic <em>rift settings</em>…"</div></div>
+</div>
+
+<div class="sec-label"><span>Comprehension</span></div>
+
+<!-- EX 1 — TRUE / FALSE / NOT GIVEN -->
+<div class="ex-card">
+  <div class="ex-hdr">
+    <div class="ex-n">1</div>
+    <div class="ex-htxt"><h2>True, False, or Not Given?</h2><p>Baseie sua resposta no texto — não no seu conhecimento geral.</p></div>
+    <span class="ctag">Comprehension</span>
+  </div>
+  <div class="ex-body">
+    <p class="instr">T = True (the text says this) · F = False (the text contradicts this) · NG = Not Given (the text doesn't say)</p>
+    <div class="q-list">
+      <div class="q-item">
+        <div class="q-top"><span class="q-n">1</span><span>Travertines can only form in hot spring environments.</span></div>
+        <div class="mc-opts">
+          <label class="mc-opt"><input type="radio" name="tf1" value="F"><span>F — False</span></label>
+          <label class="mc-opt"><input type="radio" name="tf1" value="T"><span>T — True</span></label>
+          <label class="mc-opt"><input type="radio" name="tf1" value="NG"><span>NG — Not Given</span></label>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-top"><span class="q-n">2</span><span>In Brazilian pre-salt deposits, microbial mats are the dominant mechanism for carbonate deposition.</span></div>
+        <div class="mc-opts">
+          <label class="mc-opt"><input type="radio" name="tf2" value="F"><span>F — False</span></label>
+          <label class="mc-opt"><input type="radio" name="tf2" value="T"><span>T — True</span></label>
+          <label class="mc-opt"><input type="radio" name="tf2" value="NG"><span>NG — Not Given</span></label>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-top"><span class="q-n">3</span><span>Core analysis on its own is not enough to reconstruct the full depositional history of a pre-salt carbonate.</span></div>
+        <div class="mc-opts">
+          <label class="mc-opt"><input type="radio" name="tf3" value="T"><span>T — True</span></label>
+          <label class="mc-opt"><input type="radio" name="tf3" value="F"><span>F — False</span></label>
+          <label class="mc-opt"><input type="radio" name="tf3" value="NG"><span>NG — Not Given</span></label>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-top"><span class="q-n">4</span><span>Roman travertines at Tivoli have been studied more thoroughly than Brazilian pre-salt carbonates.</span></div>
+        <div class="mc-opts">
+          <label class="mc-opt"><input type="radio" name="tf4" value="NG"><span>NG — Not Given</span></label>
+          <label class="mc-opt"><input type="radio" name="tf4" value="T"><span>T — True</span></label>
+          <label class="mc-opt"><input type="radio" name="tf4" value="F"><span>F — False</span></label>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-top"><span class="q-n">5</span><span>The text says that new drilling technologies will definitely improve sample recovery in pre-salt environments.</span></div>
+        <div class="mc-opts">
+          <label class="mc-opt"><input type="radio" name="tf5" value="F"><span>F — False</span></label>
+          <label class="mc-opt"><input type="radio" name="tf5" value="T"><span>T — True</span></label>
+          <label class="mc-opt"><input type="radio" name="tf5" value="NG"><span>NG — Not Given</span></label>
+        </div>
+      </div>
+    </div>
+    <button class="btn-check" onclick="checkTF()">Check ✓</button>
+    <div id="sc-tf" class="score-bar"></div>
+  </div>
+</div>
+
+<!-- EX 2 — COMPREHENSION QUESTIONS -->
+<div class="ex-card">
+  <div class="ex-hdr">
+    <div class="ex-n">2</div>
+    <div class="ex-htxt"><h2>Comprehension Questions</h2><p>Responda em inglês com suas próprias palavras</p></div>
+    <span class="ctag">Open response</span>
+  </div>
+  <div class="ex-body">
+    <p class="instr">Answer each question in 1–3 sentences. Focus on meaning, not memorising the text.</p>
+    <div class="q-list" style="gap:.9rem">
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">1</span><span>According to the text, why is it important to know how a travertine deposit formed?</span></div>
+        <textarea placeholder="It is important because..."></textarea>
+        <button class="reveal-btn" onclick="toggleAns('a1')">Show model answer</button>
+        <div class="ans-reveal" id="a1">Because the formation conditions determine the reservoir quality — specifically, porosity. The origin of the rock fabric affects how much fluid (e.g. oil) a reservoir can store and release.</div>
+      </div>
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">2</span><span>What methods do geologists use to study pre-salt carbonates, according to the text?</span></div>
+        <textarea placeholder="Geologists use..."></textarea>
+        <button class="reveal-btn" onclick="toggleAns('a2')">Show model answer</button>
+        <div class="ans-reveal" id="a2">They combine both surface mapping and core analysis, together with geochemical analysis. The text says that neither method alone is sufficient — both are needed to build a reliable depositional model.</div>
+      </div>
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">3</span><span>What is the open scientific question mentioned in paragraph 2?</span></div>
+        <textarea placeholder="Scientists are still investigating whether..."></textarea>
+        <button class="reveal-btn" onclick="toggleAns('a3')">Show model answer</button>
+        <div class="ans-reveal" id="a3">Scientists are still investigating whether microbial mats or direct chemical precipitation is the dominant mechanism — or whether both operate at the same time in pre-salt lacustrine settings.</div>
+      </div>
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">4</span><span>What does the last paragraph suggest about the future of travertine research?</span></div>
+        <textarea placeholder="The last paragraph suggests that..."></textarea>
+        <button class="reveal-btn" onclick="toggleAns('a4')">Show model answer</button>
+        <div class="ans-reveal" id="a4">It suggests that despite technological advances, fundamental challenges — such as unpredictable porosity and permeability — will remain for decades. Researchers will need both precision and adaptability, regardless of which specialisation they focus on.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EX 3 — FIND IT IN THE TEXT -->
+<div class="ex-card">
+  <div class="ex-hdr">
+    <div class="ex-n">3</div>
+    <div class="ex-htxt"><h2>Find it in the text</h2><p>Localize as estruturas no texto e copie a frase completa</p></div>
+    <span class="ctag">Text analysis</span>
+  </div>
+  <div class="ex-body">
+    <p class="instr">Go back to the reading text and find one example of each structure. Copy the full sentence here.</p>
+    <div class="q-list" style="gap:.9rem">
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">—</span><div><span class="badge ei">either … or</span><span>Find a sentence where two alternative causes or methods are mentioned.</span></div></div>
+        <textarea placeholder="Copy the sentence from the text..."></textarea>
+      </div>
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">—</span><div><span class="badge nn">neither … nor</span><span>Find a sentence that shows two things are NOT sufficient / NOT understood.</span></div></div>
+        <textarea placeholder="Copy the sentence from the text..."></textarea>
+      </div>
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">—</span><div><span class="badge bo">both … and</span><span>Find a sentence where two methods or qualities are combined.</span></div></div>
+        <textarea placeholder="Copy the sentence from the text..."></textarea>
+      </div>
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">—</span><div><span class="badge wh">whether</span><span>Find a sentence where an unresolved scientific question is introduced.</span></div></div>
+        <textarea placeholder="Copy the sentence from the text..."></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label"><span>Grammar Practice</span></div>
+
+<!-- EX 4 — FILL IN FROM TEXT LOGIC -->
+<div class="ex-card">
+  <div class="ex-hdr">
+    <div class="ex-n">4</div>
+    <div class="ex-htxt"><h2>Fill in the blanks</h2><p>Complete usando either/or · neither/nor · both/and · whether</p></div>
+    <span class="ctag">Grammar</span>
+  </div>
+  <div class="ex-body">
+    <p class="instr">Complete cada frase com a estrutura correta. Pense no significado — as frases têm contexto de geologia.</p>
+    <div class="q-list">
+
+      <div class="q-item">
+        <span class="q-n">A</span>
+        <span><span class="badge wh">whether</span>Researchers haven't decided <input type="text" id="g1" class="md" placeholder="..."> to collect samples from the north or the south face of the outcrop.</span>
+      </div>
+
+      <div class="q-item">
+        <span class="q-n">B</span>
+        <span><span class="badge bo">both</span><input type="text" id="g2" class="sm" placeholder="..."> petrography <input type="text" id="g2b" class="sm" placeholder="..."> geochemical analysis were used to characterise the travertine samples.</span>
+      </div>
+
+      <div class="q-item">
+        <span class="q-n">C</span>
+        <span><span class="badge nn">neither</span><input type="text" id="g3" class="sm" placeholder="..."> the field data <input type="text" id="g3b" class="sm" placeholder="..."> the lab results confirmed the initial hypothesis.</span>
+      </div>
+
+      <div class="q-item">
+        <span class="q-n">D</span>
+        <span><span class="badge ei">either</span>You can use <input type="text" id="g4" class="sm" placeholder="..."> thin-section microscopy <input type="text" id="g4b" class="sm" placeholder="..."> SEM imaging — <input type="text" id="g4c" class="md" placeholder="..."> method will give you useful data.</span>
+      </div>
+
+      <div class="q-item">
+        <span class="q-n">E</span>
+        <span><span class="badge wh">whether</span>The question of <input type="text" id="g5" class="md" placeholder="..."> microbial activity influenced the fabric is still open.</span>
+      </div>
+
+      <div class="q-item">
+        <span class="q-n">F</span>
+        <span><span class="badge nn">neither</span>At that depth, <input type="text" id="g6" class="sm" placeholder="..."> GPS <input type="text" id="g6b" class="sm" placeholder="..."> mobile networks were available.</span>
+      </div>
+
+      <div class="q-item">
+        <span class="q-n">G</span>
+        <span><span class="badge bo">both</span>The conference presentation was <input type="text" id="g7" class="sm" placeholder="..."> technical <input type="text" id="g7b" class="sm" placeholder="..."> highly visual — the audience responded very well.</span>
+      </div>
+
+      <div class="q-item">
+        <span class="q-n">H</span>
+        <span><span class="badge wh">whether</span><input type="text" id="g8" class="md" placeholder="..."> or not the pre-salt reservoirs are commercially viable, the science behind them is extraordinary.</span>
+      </div>
+
+    </div>
+    <button class="btn-check" onclick="checkFill()">Check ✓</button>
+    <div id="sc-fill" class="score-bar"></div>
+  </div>
+</div>
+
+<!-- EX 5 — SENTENCE TRANSFORMATION -->
+<div class="ex-card">
+  <div class="ex-hdr">
+    <div class="ex-n">5</div>
+    <div class="ex-htxt"><h2>Rewrite using the structure in brackets</h2><p>Mesmo significado — estrutura diferente</p></div>
+    <span class="ctag">Production</span>
+  </div>
+  <div class="ex-body">
+    <p class="instr">Reescreva mantendo o significado. Use a estrutura indicada.</p>
+    <div class="q-list" style="gap:.8rem">
+
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">1</span><div>
+          <div style="font-style:italic;color:var(--ink2)">"The GPS wasn't working. The compass wasn't working either."</div>
+          <div style="font-size:12px;color:var(--ink3);margin-top:2px">→ <strong>neither … nor</strong></div>
+        </div></div>
+        <input type="text" id="r1" class="full" placeholder="Neither...">
+        <button class="reveal-btn" onclick="toggleAns('r1a')">Model answer</button>
+        <div class="ans-reveal" id="r1a">Neither the GPS nor the compass was working.</div>
+      </div>
+
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">2</span><div>
+          <div style="font-style:italic;color:var(--ink2)">"I'm not sure if the conference will be in person or online this year."</div>
+          <div style="font-size:12px;color:var(--ink3);margin-top:2px">→ <strong>whether … or</strong></div>
+        </div></div>
+        <input type="text" id="r2" class="full" placeholder="I'm not sure whether...">
+        <button class="reveal-btn" onclick="toggleAns('r2a')">Model answer</button>
+        <div class="ans-reveal" id="r2a">I'm not sure whether the conference will be in person or online this year.</div>
+      </div>
+
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">3</span><div>
+          <div style="font-style:italic;color:var(--ink2)">"The sample has high porosity. It also has unusual permeability."</div>
+          <div style="font-size:12px;color:var(--ink3);margin-top:2px">→ <strong>both … and</strong></div>
+        </div></div>
+        <input type="text" id="r3" class="full" placeholder="The sample has both...">
+        <button class="reveal-btn" onclick="toggleAns('r3a')">Model answer</button>
+        <div class="ans-reveal" id="r3a">The sample has both high porosity and unusual permeability.</div>
+      </div>
+
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">4</span><div>
+          <div style="font-style:italic;color:var(--ink2)">"You can fly to the field site or take the company helicopter — choose whichever you prefer."</div>
+          <div style="font-size:12px;color:var(--ink3);margin-top:2px">→ <strong>either … or</strong></div>
+        </div></div>
+        <input type="text" id="r4" class="full" placeholder="You can either...">
+        <button class="reveal-btn" onclick="toggleAns('r4a')">Model answer</button>
+        <div class="ans-reveal" id="r4a">You can either fly to the field site or take the company helicopter.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- EX 6 — FREE WRITING -->
+<div class="ex-card">
+  <div class="ex-hdr">
+    <div class="ex-n">6</div>
+    <div class="ex-htxt"><h2>Write about your research</h2><p>Produção livre — use as quatro estruturas</p></div>
+    <span class="ctag">Free production</span>
+  </div>
+  <div class="ex-body">
+    <p class="instr">Write 4–6 sentences about your own research or fieldwork. Use each structure at least once. Write as if you were introducing your work to an international colleague at a conference.</p>
+    <div class="q-list" style="gap:.75rem">
+      <div class="q-item col">
+        <div class="q-top"><span class="q-n">—</span><span>Your paragraph:</span></div>
+        <textarea style="min-height:110px" placeholder="In my research on pre-salt travertines, both... / I'm still investigating whether... / Either... or... / Neither... nor..."></textarea>
+      </div>
+    </div>
+    <div style="margin-top:.75rem;padding:.65rem 1rem;background:var(--ei3);border:1px solid #A0C0E0;border-radius:8px;font-size:13px;color:var(--ei);">
+      <strong>Challenge:</strong> Can you use a structure you don't normally use? Try <em>whether or not</em> or <em>neither of them</em> to go beyond the basics.
+    </div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+function norm(s){return s.trim().toLowerCase().replace(/\s+/g,' ');}
+
+const tfAns={tf1:'F',tf2:'NG',tf3:'T',tf4:'NG',tf5:'F'};
+function checkTF(){
+  let ok=0,t=Object.keys(tfAns).length;
+  for(const[n,a]of Object.entries(tfAns)){
+    const radios=document.querySelectorAll('input[name="'+n+'"]');
+    let chosen=null;
+    radios.forEach(r=>{r.className='';if(r.checked)chosen=r;});
+    if(chosen){
+      if(chosen.value===a){chosen.className='ok-r';ok++;}
+      else chosen.className='err-r';
+    }
+  }
+  showScore('sc-tf',ok,t);
+}
+
+const fillAns={
+  g1:['whether'],
+  g2:['both'],g2b:['and'],
+  g3:['neither'],g3b:['nor'],
+  g4:['either'],g4b:['or'],g4c:['either'],
+  g5:['whether'],
+  g6:['neither'],g6b:['nor'],
+  g7:['both'],g7b:['and'],
+  g8:['whether']
+};
+function checkFill(){
+  let ok=0,t=Object.keys(fillAns).length;
+  for(const[id,acc]of Object.entries(fillAns)){
+    const el=document.getElementById(id);if(!el)continue;
+    const v=norm(el.value);
+    el.className=el.className.replace(/ ?(ok|err)/g,'');
+    if(!v)continue;
+    const c=Array.isArray(acc)?acc.includes(v):v===acc;
+    el.className+=(c?' ok':' err');
+    if(c)ok++;
+  }
+  showScore('sc-fill',ok,t);
+}
+
+function showScore(id,ok,total){
+  const bar=document.getElementById(id);
+  bar.style.display='block';
+  if(ok===total){bar.className='score-bar good';bar.textContent=ok+'/'+total+' — 🎉 Perfect!';}
+  else if(ok>=Math.ceil(total*.6)){bar.className='score-bar partial';bar.textContent=ok+'/'+total+' — Good! Review the marked ones.';}
+  else{bar.className='score-bar retry';bar.textContent=ok+'/'+total+' — Try again after reviewing the text.';}
+}
+
+function toggleAns(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+  const btn=el.previousElementSibling;
+  btn.textContent=el.classList.contains('open')?'Hide answer':'Show model answer';
+}
+</script>
+</body>
+</html>
